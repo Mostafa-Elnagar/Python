@@ -44,8 +44,10 @@ def get_frequency_dict(sequence):
     
     # freqs: dictionary (element_type -> int)
     freq = {}
+	
     for x in sequence:
         freq[x] = freq.get(x, 0) + 1
+	
     return freq
 	
 
@@ -104,6 +106,7 @@ def display_hand(hand):
     for letter in hand.keys():
         for _ in range(hand[letter]):
              print(letter, end=' ')      # print all on the same line
+	
     print()                              # print an empty line
 
 
@@ -294,12 +297,15 @@ def substitute_hand(hand, letter):
     hand_copy = hand.copy()
     chars = VOWELS + CONSONANTS
     rand_choice = random.choice(chars)
+
     while rand_choice in hand:
         rand_choice = random.choice(chars)
+	
     if letter in hand:
         del(hand_copy[letter])
         hand_copy[rand_choice] = hand[letter]
         return hand_copy
+
     return hand
 
 def play_game(word_list):
@@ -346,6 +352,7 @@ def play_game(word_list):
 
         if sub_flag:
             state = input("Would you like to substitute a letter: ").strip().lower()
+	
             if state in "yes":
                 letter = input("Which letter do you want to substitute: ").strip().lower()
                 hand = substitute_hand(hand, letter)
